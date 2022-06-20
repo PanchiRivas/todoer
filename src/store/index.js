@@ -6,8 +6,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     tasks:[
-      {done: true, text: 'Pasear al doggo'}
-    ]
+      {done: false, text: 'Comprar pan'},
+      {done: false, text: 'Cocinar'},
+      {done: true, text: 'Comprar arroz'}
+    ],
+    empty: ''
   },
   getters: {
   },
@@ -19,7 +22,17 @@ export default new Vuex.Store({
       }else{
         console.log("empty text");
       }
-      
+    },
+    isDone(state, index){
+      console.log("done");
+      state.tasks[index].done = true;
+    },
+    deleteTask(state, index){
+      console.log("delete");
+      state.tasks.splice(index, 1);
+    },
+    addAgain(state, index){
+      state.tasks[index].done = false;
     }
   },
   actions: {

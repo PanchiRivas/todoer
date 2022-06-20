@@ -1,30 +1,25 @@
 <template>
-  <div>
+  <div class="c-main">
     <b-row >
-            <b-col cols="2" lg="2" md="2">
-                <p></p>
-            </b-col>
+            <b-col cols="2" lg="2" md="2"></b-col>
+
             <b-col cols="8" lg="8" md="8">
-                <div class="mt-3" v-for="task of tasks" v-bind:key="task">
-
-                    <b-row>
-                        <b-col cols="7" sm="8" lg="8" md="8" xl="9"><p>{{task.text}}</p></b-col>
-                        <b-col cols="1" sm="1" lg="1" md="1" xl="1">
-                            
-                        </b-col>
-                        <b-col cols="4" sm="3" lg="3" md="3" xl="2">
-                            <div class="right">
-                            <b-button variant="success">O</b-button>
-                            <b-button variant="danger">X</b-button>
-                            </div>
-                        </b-col>
-                    </b-row>
-
+                <div class="mt-3" v-for="(task, index) of tasks" v-bind:key="task" >
+                   <div class="theIf" v-if="task.done===false">
+                        <div class="text" >
+                            {{task.text}}
+                        </div>
+                        <div class="buttons">
+                            <button @click="isDone(index)"><img src="../assets/checked.png"></button>
+                            <button @click="deleteTask(index)"><img src="../assets/cancel.png"></button>
+                        </div>
+                   </div>
+                   <span v-else></span>
                 </div>
             </b-col>
-            <b-col cols="2" lg="2" md="2">
-                <p></p>
-            </b-col>
+
+            <b-col cols="2" lg="2" md="2"></b-col>
+
         </b-row>
   </div>
 </template>
@@ -44,17 +39,42 @@ export default {
 </script>
 
 <style scoped>
-
+.mt-3 .buttons{
+    display: none;
+}
+.mt-3:hover .buttons{
+    display: flex;
+}
 .mt-3{
     width: 100%;
+    display: flex;
     font-size: 25px;
     border-width: 0px;
-    align-items: center;
     border-color: #cccccc;
     color: #464646;
     border-style: solid;
     border-radius: 2px;
     box-shadow: 0px 0px 3px rgba(66,66,66,.76);
 }
+.theIf{
+    width: 100%;
+    display: flex;
+}
+.text{
+    width: 70%;
+}
+button{
+    font-size: 18px;
+    background: none;
+	border: none;
+}
+img{
+    height: 35px;
+}
+.buttons{
+    display: flex;
+    margin-left:auto;
+}
+
 
 </style>
